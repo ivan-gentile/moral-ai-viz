@@ -350,10 +350,11 @@ h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.0
 .foot .big{font-family:"Fraunces",serif;font-size:30px;color:var(--ink);margin-bottom:.3em}
 .foot a{color:var(--good)}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+/* reveal — progressive enhancement: visible by default, only hidden once JS opts in (body.anim) */
+.reveal{transition:opacity .7s ease,transform .7s ease}
+body.anim .reveal{opacity:0;transform:translateY(24px)}
+body.anim .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){body.anim .reveal{opacity:1;transform:none;transition:none}}
 
 @media(max-width:860px){
   body{font-size:18px}
@@ -365,12 +366,28 @@ h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.0
 """
 
 JS = r"""
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-// play videos only while on screen (autoplay+muted+loop set inline)
-const vo=new IntersectionObserver((es)=>{es.forEach(e=>{const v=e.target;
-  if(e.isIntersecting){v.play&&v.play().catch(()=>{});}else{v.pause&&v.pause();}})},{threshold:.35});
-document.querySelectorAll('video').forEach(v=>vo.observe(v));
+(function(){
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // staggered reveal as progressive enhancement; content is visible without it
+  try{
+    if(!rm && 'IntersectionObserver' in window){
+      document.body.classList.add('anim');
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting) e.target.classList.add('in');});},
+        {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+      document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    }
+  }catch(e){ document.body.classList.remove('anim'); }
+  // play videos only while on screen (autoplay+muted+loop set inline)
+  try{
+    if('IntersectionObserver' in window){
+      var vo=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+        if(e.isIntersecting){ v.play && v.play().catch(function(){}); } else { v.pause && v.pause(); }});},
+        {threshold:.35});
+      document.querySelectorAll('video').forEach(function(v){vo.observe(v);});
+    }
+  }catch(e){}
+})();
 """
 
 
