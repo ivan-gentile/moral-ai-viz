@@ -1,0 +1,9 @@
+.manim-env
+manim-env/
+media/
+__pycache__/
+*.pyc
+_source/
+build_manim_env.log
+/tmp/
+.DS_Store
