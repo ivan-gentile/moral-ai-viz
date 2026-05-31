@@ -10,14 +10,15 @@ sys.path.insert(0, os.path.dirname(__file__))
 from manim import *
 from style import (BG, INK, MUTE, GOOD, BAD, GOLD, PANEL, LINE,
                    title_band, footer, body, caption, chip)
-import intro_data as D
+from content import D
 
 
 class BabyAndBathwater(Scene):
     def construct(self):
         T = D.THESIS
-        head = title_band("Don't throw out the baby", "the book's thesis")
-        foot = footer("the thesis")
+        ST = D.SCENE_TITLES["thesis"]
+        head = title_band(ST["title"], ST["eyebrow"])
+        foot = footer(ST["foot"])
         self.play(FadeIn(head, shift=DOWN * 0.2), FadeIn(foot), run_time=0.9)
 
         # --- a balance that settles level -------------------------------
@@ -40,9 +41,9 @@ class BabyAndBathwater(Scene):
             return VGroup(hang, tray, w)
 
         scale = VGroup(beam, pan(-1), pan(1))
-        lab_l = caption("underestimate\nthe dangers", color=BAD, size=18)
+        lab_l = caption(D.STRINGS["under"], color=BAD, size=18)
         lab_l.move_to(pivot + LEFT * 2.4 + DOWN * 1.35)
-        lab_r = caption("overestimate\nthe dangers", color=BAD, size=18)
+        lab_r = caption(D.STRINGS["over"], color=BAD, size=18)
         lab_r.move_to(pivot + RIGHT * 2.4 + DOWN * 1.35)
 
         self.play(Create(post), FadeIn(fulcrum), run_time=0.7)
@@ -53,7 +54,7 @@ class BabyAndBathwater(Scene):
         self.play(Rotate(scale, angle=-0.14, about_point=pivot), run_time=0.7)
         self.play(Rotate(scale, angle=0.26, about_point=pivot), run_time=0.8)
         self.play(Rotate(scale, angle=-0.12, about_point=pivot), run_time=0.7)
-        balanced = chip("addressed thoughtfully", color=BG, fill=GOOD, size=22)
+        balanced = chip(D.STRINGS["balanced"], color=BG, fill=GOOD, size=22)
         balanced.move_to(pivot + UP * 1.05)
         self.play(FadeIn(balanced, shift=DOWN * 0.1), run_time=0.7)
         self.wait(1.0)
@@ -61,10 +62,10 @@ class BabyAndBathwater(Scene):
         scale_grp = VGroup(post, fulcrum, scale, lab_l, lab_r, balanced)
 
         # --- the verbatim thesis ----------------------------------------
-        l1 = body(f"“{T['not_underestimate']} {T['not_overestimate']}”",
+        l1 = body(f"{T['not_underestimate']} {T['not_overestimate']}",
                   color=INK, size=26, w=52)
         l1.move_to([0, 0.7, 0])
-        l2 = body(f"“{T['baby_bathwater']}”", color=INK, size=24, w=54)
+        l2 = body(T["baby_bathwater"], color=INK, size=24, w=54)
         l2.next_to(l1, DOWN, buff=0.4)
         thesis_grp = VGroup(l1, l2)
 
@@ -78,8 +79,8 @@ class BabyAndBathwater(Scene):
         bt = Text("Moral AI", font_size=46, color=INK, weight=BOLD)
         bs = Text("and How We Get There", font_size=26, color=MUTE)
         names = caption(" · ".join(D.BOOK["authors"]), color=MUTE, size=20)
-        sec = caption("Introduction · What's the Problem?", color=GOLD, size=20)
-        tagline = caption("a visual companion · every figure & source from the book",
+        sec = caption(D.STRINGS["section_label"], color=GOLD, size=20)
+        tagline = caption(D.STRINGS["endcard_tagline"],
                           color=MUTE, size=16)
         endcard = VGroup(bt, bs, sec, names, tagline).arrange(DOWN, buff=0.28)
         endcard.move_to(ORIGIN)

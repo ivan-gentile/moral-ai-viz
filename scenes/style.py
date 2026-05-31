@@ -95,9 +95,9 @@ def caption(text, color=MUTE, size=20, w=None):
     return Text(text, font_size=size, color=color, line_spacing=0.85)
 
 
-def ref_tag(n, color=MUTE):
+def ref_tag(n, color=MUTE, prefix="ref"):
     """Small provenance chip, e.g. 'ref 6' -> the book's footnote number."""
-    label = Text(f"ref {n}", font_size=16, color=color, weight=MEDIUM)
+    label = Text(f"{prefix} {n}", font_size=16, color=color, weight=MEDIUM)
     box = SurroundingRectangle(label, color=color, buff=0.1,
                                corner_radius=0.08, stroke_width=1.2)
     return VGroup(box, label)

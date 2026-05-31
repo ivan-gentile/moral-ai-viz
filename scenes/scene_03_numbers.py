@@ -11,18 +11,20 @@ sys.path.insert(0, os.path.dirname(__file__))
 from manim import *
 from style import (BG, INK, MUTE, GOOD, BAD, GOLD, PANEL, LINE,
                    title_band, footer, body, caption, card, ref_tag)
-import intro_data as D
+from content import D
 
 
 class ByTheNumbers(Scene):
     def construct(self):
-        head = title_band("By the numbers", "Every figure is the book's own")
+        head = title_band(D.SCENE_TITLES["numbers"]["title"], D.SCENE_TITLES["numbers"]["eyebrow"])
         self.play(FadeIn(head, shift=DOWN * 0.2), run_time=0.9)
 
-        note = caption("different units — shown for scale, not as a ranking",
+        note = caption(D.STRINGS["numbers_note"],
                        color=MUTE, size=20)
         note.next_to(head, DOWN, buff=0.18)
-        self.play(FadeIn(note), run_time=0.6)
+
+        foot = footer(D.SCENE_TITLES["numbers"]["foot"])
+        self.play(FadeIn(note), FadeIn(foot), run_time=0.6)
 
         CARD_W = 2.95
         CARD_H = 2.18
@@ -33,17 +35,19 @@ class ByTheNumbers(Scene):
             val = Text(n["value"], font_size=32, color=tone, weight=BOLD)
             lab = caption(n["label"], color=INK, size=17, w=24)
             ctx = caption(n["context"], color=MUTE, size=13, w=34)
-            rt = ref_tag(n["fn"], color=MUTE).scale(0.8)
+            rt = ref_tag(n["fn"], color=MUTE, prefix=D.UI["ref"]).scale(0.8)
             # value + label + context stacked, leaving room for the ref chip
             stack = VGroup(val, lab, ctx).arrange(DOWN, buff=0.12)
-            # never let content spill past the box; scale the stack if needed
-            inner_w = CARD_W - 0.34
-            inner_h = CARD_H - 0.62          # reserve a band for the ref chip
+            # never let content spill past the box; scale the stack if needed.
+            # generous side padding + a tall reserved band so the context never
+            # crowds the ref chip in either language (Italian runs longer).
+            inner_w = CARD_W - 0.52
+            inner_h = CARD_H - 0.82          # reserve a band for the ref chip
             if stack.width > inner_w:
                 stack.scale(inner_w / stack.width)
             if stack.height > inner_h:
                 stack.scale(inner_h / stack.height)
-            stack.move_to(box.get_top() + DOWN * (stack.height / 2 + 0.18))
+            stack.move_to(box.get_top() + DOWN * (stack.height / 2 + 0.20))
             rt.move_to(box.get_corner(DR) + LEFT * 0.42 + UP * 0.26)
             return VGroup(box, stack, rt)
 

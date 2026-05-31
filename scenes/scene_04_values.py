@@ -10,16 +10,16 @@ sys.path.insert(0, os.path.dirname(__file__))
 from manim import *
 from style import (BG, INK, MUTE, GOOD, BAD, GOLD, PANEL, LINE,
                    title_band, footer, body, caption, card)
-import intro_data as D
+from content import D
 
 ACCENTS = ["#5ac8a8", "#7aa2f7", "#e7b86b", "#9ece6a", "#bb9af7", "#e0736b"]
 
 
 class SixValues(Scene):
     def construct(self):
-        head = title_band("Six moral values at stake",
-                          "what the rest of the book is about")
-        foot = footer("the values")
+        head = title_band(D.SCENE_TITLES["values"]["title"],
+                          D.SCENE_TITLES["values"]["eyebrow"])
+        foot = footer(D.SCENE_TITLES["values"]["foot"])
         self.play(FadeIn(head, shift=DOWN * 0.2), FadeIn(foot), run_time=1.1)
         self.wait(0.6)
 
@@ -47,7 +47,7 @@ class SixValues(Scene):
                               lag_ratio=0.5, run_time=8.5))
         self.wait(3.2)
 
-        caveat = caption(f"“{D.VALUES_CAVEAT}”", color=GOLD, size=19, w=70)
+        caveat = caption(D.VALUES_CAVEAT, color=GOLD, size=19, w=70)
         caveat.to_edge(DOWN, buff=0.55)
         self.play(FadeOut(foot), FadeIn(caveat, shift=UP * 0.1), run_time=1.2)
         self.wait(3.5)

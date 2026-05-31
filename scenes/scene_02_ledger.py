@@ -10,18 +10,19 @@ sys.path.insert(0, os.path.dirname(__file__))
 from manim import *
 from style import (BG, INK, MUTE, GOOD, BAD, GOLD, PANEL, LINE,
                    title_band, footer, body, caption, chip, ref_tag)
-import intro_data as D
+from content import D
 
 
 class DoubleEdgedLedger(Scene):
     def construct(self):
-        head = title_band("The same technology, two faces", "Eleven domains")
-        foot = footer("the ledger")
+        ST = D.SCENE_TITLES["ledger"]
+        head = title_band(ST["title"], ST["eyebrow"])
+        foot = footer(ST["foot"])
         self.play(FadeIn(head, shift=DOWN * 0.2), FadeIn(foot), run_time=0.9)
 
         # persistent scaffold: column headers + central spine
-        gh = chip("Good news", color=BG, fill=GOOD, size=24).move_to([-3.9, 2.05, 0])
-        bh = chip("Bad news", color=BG, fill=BAD, size=24).move_to([3.9, 2.05, 0])
+        gh = chip(D.UI["good_news"], color=BG, fill=GOOD, size=24).move_to([-3.9, 2.05, 0])
+        bh = chip(D.UI["bad_news"], color=BG, fill=BAD, size=24).move_to([3.9, 2.05, 0])
         spine = Line([0, 1.55, 0], [0, -1.95, 0], color=LINE, stroke_width=1.6)
         self.play(FadeIn(gh, shift=DOWN * 0.15), FadeIn(bh, shift=DOWN * 0.15),
                   Create(spine), run_time=0.8)
@@ -40,9 +41,9 @@ class DoubleEdgedLedger(Scene):
         for i, dom in enumerate(D.DOMAINS):
             name = chip(dom["title"], color=INK, fill=PANEL, size=24).move_to([0, 0.45, 0])
             g = side(dom["good"]["head"], GOOD, -3.9)
-            grt = ref_tag(dom["good"]["fn"], color=MUTE).next_to(g, DOWN, buff=0.3)
+            grt = ref_tag(dom["good"]["fn"], color=MUTE, prefix=D.UI["ref"]).next_to(g, DOWN, buff=0.3)
             b = side(dom["bad"]["head"], BAD, 3.9)
-            brt = ref_tag(dom["bad"]["fn"], color=MUTE).next_to(b, DOWN, buff=0.3)
+            brt = ref_tag(dom["bad"]["fn"], color=MUTE, prefix=D.UI["ref"]).next_to(b, DOWN, buff=0.3)
             grp = VGroup(name, g, grt, b, brt)
 
             new_dots = dots.copy()
@@ -53,17 +54,25 @@ class DoubleEdgedLedger(Scene):
                 self.play(FadeIn(grp, shift=UP * 0.1), Transform(dots, new_dots),
                           run_time=0.7)
             else:
-                self.play(FadeOut(cur, shift=UP * 0.12),
-                          FadeIn(grp, shift=UP * 0.12),
-                          Transform(dots, new_dots), run_time=0.55)
+                # Sequence the swap so the outgoing and incoming headlines never
+                # share the screen (avoids ghosting / colliding text mid-fade).
+                self.play(
+                    LaggedStart(
+                        FadeOut(cur, shift=UP * 0.12),
+                        FadeIn(grp, shift=UP * 0.12),
+                        lag_ratio=0.65,
+                    ),
+                    Transform(dots, new_dots),
+                    run_time=0.85,
+                )
             cur = grp
-            self.wait(1.25)
+            self.wait(1.1)
 
         self.play(FadeOut(cur), FadeOut(spine), FadeOut(gh), FadeOut(bh),
                   FadeOut(dots), run_time=0.7)
 
         # closing: tip of the iceberg + the eleven names
-        tip = body(f"“{D.THESIS['tip_of_iceberg']}”", color=INK, size=30, w=40)
+        tip = body(D.THESIS["tip_of_iceberg"], color=INK, size=30, w=40)
         tip.move_to([0, 1.4, 0])
         names = VGroup(*[caption(d["title"], color=MUTE, size=22) for d in D.DOMAINS])
         names.arrange_in_grid(rows=2, buff=(0.7, 0.45)).move_to([0, -0.7, 0])

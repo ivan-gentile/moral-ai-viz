@@ -43,8 +43,8 @@ BOOK = {
 # FRAMING  (Introduction, pp. xiii-xiv)
 # ---------------------------------------------------------------------------
 FRAMING = {
-    # verbatim, shown in quotation marks
-    "alarm": "The robots are coming! The robots are coming!",
+    # our paraphrase of the cultural alarm the book opens with (not a book quote)
+    "alarm": "The alarm spreads — the robots are coming.",
     # faithful paraphrases of the two camps
     "pessimist_label": "The pessimist",
     "pessimist_points": [
@@ -67,13 +67,14 @@ FRAMING = {
                         "Manipulated votes & purchases", "→ Slow AI down"],
     "optimist_short": ["Safer than drunk drivers", "Fewer wartime atrocities",
                        "Faster science & medicine", "→ Don't slow down"],
-    # verbatim, shown in quotation marks
-    "verdict_question": "Is the glass half empty or half full?",
-    "verdict": "Our answer is: both.",
+    # our framing of the book's stance (paraphrase, not a quotation)
+    "verdict_question": "Half empty, or half full?",
+    "verdict_pre": "The authors' answer:",
+    "verdict": "both.",
     "verdict_gloss": (
-        "There is bad news that gives us reason to worry about some uses of AI, "
-        "and good news that gives us reason to advocate for others — sometimes "
-        "for the very same AI technique."
+        "The book argues there is bad news that should worry us about some uses of "
+        "AI, and good news worth advocating for in others — sometimes for the very "
+        "same technique."
     ),
 }
 
@@ -441,31 +442,124 @@ VALUES = [
                      "elections."},
 ]
 
-VALUES_CAVEAT = "Some AI uses implicate more than one value, and this list is not meant to be exhaustive."
+# Paraphrase of the authors' caveat (the book stresses the list is not exhaustive).
+VALUES_CAVEAT = "The authors stress this list isn't exhaustive — and many cases touch more than one value."
 
 # ---------------------------------------------------------------------------
-# THESIS  (Introduction, p. xx) - verbatim fragments shown in quotation marks
+# THESIS  (Introduction, p. xx) - paraphrased in our own words, not quoted.
 # ---------------------------------------------------------------------------
 THESIS = {
-    "tip_of_iceberg": "These examples are just the tip of the iceberg.",
-    "not_underestimate": "The dangers of AI should not be underestimated,",
-    "not_overestimate": "but they also should not be overestimated.",
-    "balance": "Typically, AI can be built and used safely and ethically as long as "
-               "these moral issues are addressed thoughtfully.",
-    "baby_bathwater": "To keep the AI baby without its bathwater, we will try to "
-                      "illuminate the moral issues at stake — and show why we all need "
-                      "to pay more attention to AI ethics.",
+    "tip_of_iceberg": "These cases are only a small sample.",
+    "not_underestimate": "AI's dangers shouldn't be underestimated —",
+    "not_overestimate": "but they shouldn't be overestimated either.",
+    "balance": "The book's view: AI can usually be built and used safely, as long as "
+               "these moral issues are taken seriously.",
+    "baby_bathwater": "Keep AI's benefits without its harms — don't throw the baby out "
+                      "with the bathwater — and pay AI ethics the attention it deserves.",
 }
 
 # Honest "what we do NOT claim" box for the website.
 NOT_CLAIM = [
-    "We do not claim these cases are exhaustive or representative of all AI — the "
-    "book calls them 'the tip of the iceberg.'",
-    "We do not independently verify the events; we report them as the book does, and "
-    "link the source the authors cite.",
-    "The numbers use different units and are not comparable on a single scale — they "
-    "show the scale of the stakes, not a ranking.",
+    "This is an unofficial companion, not the book. We paraphrase the authors in our "
+    "own words; read the book for their full argument.",
+    "The eleven stories are the ones the authors chose for their Introduction — a small "
+    "sample they call the tip of the iceberg, not a survey of all AI.",
+    "We do not independently verify the events; we relay them as the book does and link "
+    "the source the authors cite (and, in the Italian edition, an Italian-language source).",
+    "The figures use different units and are not comparable on one scale — they show the "
+    "scale of the stakes, not a ranking.",
     "Photographs are freely-licensed, representative images (credited below); unless "
-    "noted, they do not depict the exact event described.",
-    "Diagrams such as the glass and the balance are schematic illustrations, not data.",
+    "noted, they do not depict the exact event. The glass and balance are schematic.",
 ]
+
+# ---------------------------------------------------------------------------
+# ATTRIBUTION - shown prominently so the citation of the book is unmistakable.
+# ---------------------------------------------------------------------------
+ATTRIBUTION = {
+    "kicker": "An unofficial visual companion to the book",
+    "selection": "The eleven good-news / bad-news stories below are the examples the "
+                 "authors chose for the book's Introduction (“What's the Problem?”).",
+    "method": "We paraphrase them in our own words and link the sources the authors "
+              "cite — this companion is not a substitute for reading the book.",
+    "not_affiliated": "Not affiliated with, nor endorsed by, the authors or Pelican Books.",
+    "read_the_book": "Read the book",
+}
+
+# ---------------------------------------------------------------------------
+# UI / SCENE strings (English). The Italian module mirrors these keys so the
+# same scenes and page render in either language.
+# ---------------------------------------------------------------------------
+LANG = "en"
+LANG_NAME = "English"
+OTHER_LANG_LABEL = "Italiano"
+OTHER_LANG_HREF = "it/"
+
+UI = {
+    "good_news": "Good news",
+    "bad_news": "Bad news",
+    "ref": "ref",
+    "source": "Source",
+    "from_book": "from the book’s Introduction",
+    "companion": "A visual companion · paraphrased, with the book’s sources",
+}
+
+SCENE_TITLES = {
+    "framing": {"eyebrow": "Moral AI · the book’s Introduction",
+                "title": "What’s the problem?", "foot": "framing"},
+    "ledger":  {"eyebrow": "Eleven domains · from the Introduction",
+                "title": "The same technology, two faces", "foot": "the ledger"},
+    "numbers": {"eyebrow": "Figures reported in the book",
+                "title": "By the numbers", "foot": "by the numbers"},
+    "values":  {"eyebrow": "What the rest of the book explores",
+                "title": "Six moral values at stake", "foot": "the values"},
+    "thesis":  {"eyebrow": "The book’s argument",
+                "title": "Don’t throw out the baby", "foot": "the thesis"},
+}
+
+# small on-screen strings used inside the scenes
+STRINGS = {
+    "alarm_sub": "The alarm spreads fast.",
+    "glass_empty": "half empty",
+    "glass_full": "half full",
+    "numbers_note": "different units — shown for scale, not a ranking",
+    "under": "underestimate\nthe dangers",
+    "over": "overestimate\nthe dangers",
+    "balanced": "addressed thoughtfully",
+    "section_label": "Introduction · What’s the Problem?",
+    "endcard_tagline": "a visual companion · paraphrased, with the book’s sources",
+}
+
+# ---------------------------------------------------------------------------
+# PAGE chrome — strings used only by the website (build_site.py).
+# ---------------------------------------------------------------------------
+PAGE = {
+    "blurbs": {
+        "framing": "Pessimists fear the worst; optimists can't wait. The book's reply to "
+                   "“half empty or half full?” is: both.",
+        "ledger":  "Eleven everyday domains, each carrying good news and bad news — "
+                   "sometimes from the very same technique.",
+        "numbers": "The Introduction's hard figures, each in its own context. Different "
+                   "units — shown for scale, never as a ranking.",
+        "values":  "Six moral values the rest of the book is built around — and the "
+                   "authors' reminder that the list isn't exhaustive.",
+        "thesis":  "Don't underestimate AI's dangers; don't overestimate them either. "
+                   "Keep the AI baby — lose the bathwater.",
+    },
+    "references_eyebrow": "Provenance",
+    "references_h": "References",
+    "references_lead": "The sources the authors cite in the book's Introduction (notes "
+                       "1–23). The book reports these cases; we link what it cites.",
+    "credits_eyebrow": "Image credits",
+    "credits_h": "Representative images",
+    "credits_lead": "Freely-licensed photographs (mostly Wikimedia Commons). Unless "
+                    "noted, they illustrate the domain rather than the exact event.",
+    "notclaim_pre": "What we do ", "notclaim_em": "not", "notclaim_post": " claim",
+    "good_label_short": "good", "bad_label_short": "bad",
+    "footer_companion": "An unofficial visual companion to the Introduction "
+                        "(“What's the Problem?”) of the book by",
+    "footer_method": "Figures, names and dates are transcribed from the book; the prose "
+                     "is our own paraphrase. Animations hand-authored in Manim CE.",
+    "footer_staging": "Staging build · unofficial · not affiliated with, nor endorsed "
+                      "by, the authors or Pelican Books.",
+    "lang_switch": "Italiano",
+}

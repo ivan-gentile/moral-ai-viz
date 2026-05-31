@@ -1,6 +1,8 @@
 .manim-env
 manim-env/
 media/
+media_en/
+media_it/
 __pycache__/
 *.pyc
 _source/
