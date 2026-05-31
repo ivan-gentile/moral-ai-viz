@@ -1,0 +1,855 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moral AI — An unofficial visual companion to the book</title>
+<meta name="description" content="An unofficial visual companion to the book Moral AI and How We Get There (Jana Schaich Borg · Walter Sinnott-Armstrong · Vincent Conitzer).">
+<meta property="og:title" content="Moral AI — Introduction: What&#x27;s the Problem?">
+<meta property="og:description" content="The eleven good-news / bad-news stories below are the examples the authors chose for the book&#x27;s Introduction (“What&#x27;s the Problem?”).">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e1116; --bg2:#11141a; --panel:#161b24; --panel2:#1b2130; --line:#28303f;
+  --ink:#f4f6fa; --mute:#97a0b3; --good:#5ac8a8; --bad:#e0736b; --gold:#e7b86b;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(60vw 60vw at 8% -6%, rgba(90,200,168,.12), transparent 60%),
+             radial-gradient(55vw 55vw at 100% 105%, rgba(224,115,107,.12), transparent 60%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:var(--good);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.05;margin:0}
+.eyebrow{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mute)}
+
+/* language bar */
+.langbar{position:absolute;top:22px;right:24px;z-index:3}
+.langbar a{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mute);border:1px solid var(--line);
+  border-radius:999px;padding:7px 14px}
+.langbar a:hover{color:var(--ink);border-color:var(--mute);text-decoration:none}
+
+/* hero */
+.hero{position:relative;padding:16vh 0 8vh;border-bottom:1px solid var(--line);overflow:hidden}
+.hero .seam{position:absolute;top:0;bottom:0;left:50%;width:1px;
+  background:linear-gradient(var(--good),var(--bad));opacity:.22}
+.hero h1{font-size:clamp(56px,12vw,150px);letter-spacing:-.02em;font-optical-sizing:auto}
+.hero .sub{font-size:clamp(20px,2.6vw,30px);color:var(--mute);margin-top:.3em;
+  font-family:"Fraunces",serif;font-style:italic}
+.hero .byline{font-family:"Space Mono",monospace;font-size:13.5px;letter-spacing:.04em;
+  color:var(--mute);margin:.9em 0 0}
+.attrib{max-width:60ch;margin:1.8rem 0 0;border-left:2px solid var(--gold);
+  padding:.2rem 0 .2rem 18px}
+.attrib p{margin:.35em 0;font-size:18px;color:#c6cdda}
+.attrib .muted{color:var(--mute);font-size:15px}
+.readbook{display:inline-block;margin-top:.6rem;font-family:"Space Mono",monospace;
+  font-size:13px;letter-spacing:.05em;border:1px solid var(--good);border-radius:8px;
+  padding:8px 14px;color:var(--good)}
+.readbook:hover{background:rgba(90,200,168,.1);text-decoration:none}
+.hero .q{margin-top:2.4rem;font-size:clamp(22px,3vw,34px);max-width:24ch}
+.both{background:linear-gradient(92deg,var(--good),var(--gold) 45%,var(--bad));
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
+
+/* sections */
+.section{padding:8vh 0;border-bottom:1px solid var(--line)}
+.section__head{display:flex;align-items:baseline;gap:20px;margin-bottom:2.2rem;flex-wrap:wrap}
+.section h2{font-size:clamp(34px,5.5vw,60px);letter-spacing:-.01em}
+.lead{color:var(--mute);max-width:62ch;font-size:21px}
+
+.vid{margin:2.4rem 0 0;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:var(--bg2);box-shadow:0 24px 60px -28px rgba(0,0,0,.8)}
+.vid video{display:block;width:100%;height:auto;background:var(--bg2)}
+.vid figcaption{padding:13px 18px;color:var(--mute);font-size:15px;border-top:1px solid var(--line)}
+.vid--missing{padding:46px;text-align:center;color:var(--mute)}
+.vid--missing span{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+
+.domain{padding:5vh 0;border-bottom:1px dashed var(--line)}
+.domain:last-child{border-bottom:none}
+.domain__head{display:flex;align-items:center;gap:18px;margin-bottom:1.6rem}
+.domain__idx{font-family:"Space Mono",monospace;color:var(--gold);font-size:15px}
+.domain__head h3{font-size:clamp(28px,4vw,44px)}
+.domain__rule{flex:1;height:1px;background:var(--line)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .35s ease,border-color .35s ease}
+.panel:hover{transform:translateY(-4px)}
+.panel--good{border-top:3px solid var(--good)} .panel--good:hover{border-color:var(--good)}
+.panel--bad{border-top:3px solid var(--bad)} .panel--bad:hover{border-color:var(--bad)}
+.ph{margin:0;position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--panel2)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s ease,filter .6s ease;filter:saturate(.92)}
+.panel:hover .ph img{transform:scale(1.05);filter:saturate(1.05)}
+.ph .credit{position:absolute;right:8px;bottom:8px;margin:0;font-family:"Space Mono",monospace;
+  font-size:10.5px;color:#cfd6e2;background:rgba(8,10,14,.66);backdrop-filter:blur(3px);
+  padding:3px 8px;border-radius:6px;max-width:78%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph .credit a{color:#cfd6e2}
+.tile{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:22px;text-align:center}
+.tile span{font-family:"Fraunces",serif;font-size:26px}
+.tile--good{background:linear-gradient(135deg,rgba(90,200,168,.16),rgba(90,200,168,.04));color:var(--good)}
+.tile--bad{background:linear-gradient(135deg,rgba(224,115,107,.16),rgba(224,115,107,.04));color:var(--bad)}
+.panel__body{padding:18px 20px 20px}
+.kicker{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.kicker--good{color:var(--good)} .kicker--bad{color:var(--bad)}
+.ref{font-size:10px;color:var(--mute);border:1px solid var(--line);border-radius:5px;padding:1px 6px;letter-spacing:.06em}
+.panel__body h4{font-size:24px;margin:0 0 6px}
+.bignum{font-family:"Space Mono",monospace;font-weight:700;font-size:30px;display:block;margin:.1em 0 .2em}
+.panel--good .bignum{color:var(--good)} .panel--bad .bignum{color:var(--bad)}
+.detail{color:#c6cdda;font-size:17px;margin:.3em 0 1em}
+.src{font-family:"Space Mono",monospace;font-size:12.5px;letter-spacing:.02em;color:var(--mute)}
+.src:hover{color:var(--ink)}
+
+.numgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.numcard{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:13px;
+  padding:22px 20px 26px;min-height:172px}
+.numcard--good{border-left:3px solid var(--good)} .numcard--bad{border-left:3px solid var(--bad)}
+.numcard__val{font-family:"Space Mono",monospace;font-weight:700;font-size:33px}
+.numcard--good .numcard__val{color:var(--good)} .numcard--bad .numcard__val{color:var(--bad)}
+.numcard__lab{font-family:"Fraunces",serif;font-size:19px;margin:.3em 0 .4em}
+.numcard__ctx{color:var(--mute);font-size:15px;line-height:1.5;margin:0}
+.ref--corner{position:absolute;top:14px;right:14px}
+.numnote{margin-top:1.4rem;color:var(--mute);font-family:"Space Mono",monospace;font-size:12.5px;letter-spacing:.06em}
+
+.valgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.valcard{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:24px 22px;position:relative;overflow:hidden}
+.valcard__bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.valcard h4{font-size:25px;margin:.2em 0 .5em;color:var(--ink)}
+.valcard p{color:var(--mute);font-size:16px;margin:0}
+.caveat{margin-top:1.8rem;color:var(--gold);font-style:italic;font-size:19px}
+
+.honesty{background:linear-gradient(180deg,rgba(231,184,107,.07),transparent);
+  border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:13px;padding:30px 32px}
+.honesty h2{font-size:30px;margin-bottom:1rem}
+.honesty ul{margin:0;padding-left:1.1em;color:#c6cdda}
+.honesty li{margin:.5em 0}
+
+.cols2{columns:2;column-gap:42px}
+@media(max-width:760px){.cols2{columns:1}}
+.ref-list,.credits-list{list-style:none;padding:0;margin:0;font-size:15px}
+.ref-item{break-inside:avoid;display:flex;gap:12px;margin:0 0 1em;color:#c6cdda}
+.ref-num{font-family:"Space Mono",monospace;color:var(--gold);min-width:1.6em}
+.ref-txt em{color:var(--mute)}
+.credits-list li{break-inside:avoid;margin:.45em 0;color:#c6cdda}
+.credits-list b{color:var(--ink);font-family:"Space Mono",monospace;font-size:13px;font-weight:700}
+
+.foot{padding:7vh 0 9vh;color:var(--mute);font-size:15px}
+.foot .big{font-family:"Fraunces",serif;font-size:30px;color:var(--ink);margin-bottom:.3em}
+.foot a{color:var(--good)}
+
+.reveal{transition:opacity .7s ease,transform .7s ease}
+body.anim .reveal{opacity:0;transform:translateY(24px)}
+body.anim .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){body.anim .reveal{opacity:1;transform:none;transition:none}}
+
+@media(max-width:860px){
+  body{font-size:18px}
+  .split{grid-template-columns:1fr}
+  .numgrid{grid-template-columns:repeat(2,1fr)}
+  .valgrid{grid-template-columns:1fr}
+  .hero{padding:13vh 0 7vh}
+}
+</style></head><body>
+<header class="hero"><div class="seam"></div>
+  <nav class="langbar"><a href="it/">Italiano ↔</a></nav>
+  <div class="wrap">
+    <p class="eyebrow">An unofficial visual companion to the book</p>
+    <h1>Moral AI</h1>
+    <p class="sub">and How We Get There</p>
+    <p class="byline">Jana Schaich Borg · Walter Sinnott-Armstrong · Vincent Conitzer · Pelican Books (Penguin Random House), 2024 · Introduction: What&#x27;s the Problem?</p>
+    <div class="attrib">
+      <p>The eleven good-news / bad-news stories below are the examples the authors chose for the book&#x27;s Introduction (“What&#x27;s the Problem?”).</p>
+      <p>We paraphrase them in our own words and link the sources the authors cite — this companion is not a substitute for reading the book.</p>
+      <p class="muted">Not affiliated with, nor endorsed by, the authors or Pelican Books.</p>
+      <a class="readbook" href="https://books.google.com/books?vid=ISBN9780241454749" target="_blank" rel="noopener">Read the book ↗</a>
+    </div>
+    <p class="q">Half empty, or half full?<br>The authors&#x27; answer: <span class="both">both.</span></p>
+  </div>
+</header>
+<section class="section" id="framing"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">Moral AI · the book’s Introduction</span><h2>What’s the problem?</h2></div>
+  <p class="lead">Pessimists fear the worst; optimists can&#x27;t wait. The book&#x27;s reply to “half empty or half full?” is: both.</p>
+  <figure class="vid reveal"><video playsinline preload="metadata" controls autoplay loop muted src="site_media/en/Framing.mp4"></video><figcaption>Pessimists fear the worst; optimists can&#x27;t wait. The book&#x27;s reply to “half empty or half full?” is: both.</figcaption></figure>
+</div></section>
+<section class="section" id="ledger"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">Eleven domains · from the Introduction</span><h2>The same technology, two faces</h2></div>
+  <p class="lead">Eleven everyday domains, each carrying good news and bad news — sometimes from the very same technique.</p>
+  <figure class="vid reveal"><video playsinline preload="metadata" controls autoplay loop muted src="site_media/en/DoubleEdgedLedger.mp4"></video><figcaption>Eleven everyday domains, each carrying good news and bad news — sometimes from the very same technique.</figcaption></figure>
+    <section class="domain reveal" id="d-transportation">
+      <header class="domain__head">
+        <span class="domain__idx">01</span>
+        <h3>Transportation</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="A blind driver gains independence" src="site_media/images/transportation_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">Grendelkhan · CC BY-SA 4.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;1</span></p>
+          <h4>A blind driver gains independence</h4>
+          
+          <p class="detail">Steve Mahan, who is blind, rides his autonomous car around Santa Clara, California — sometimes alone, by himself.</p>
+          <a class="src" href="https://www.youtube.com/watch?v=x_d3MCkivg8" target="_blank" rel="noopener">Source: YouTube <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="First fatal Autopilot crash" src="site_media/images/transportation_bad.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">Charlie from United Kingdom · CC BY 2.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;2</span></p>
+          <h4>First fatal Autopilot crash</h4>
+          
+          <p class="detail">Joshua Brown was killed in May 2016 when his Tesla Model S on Autopilot drove into a white truck it could not distinguish from the bright sky.</p>
+          <a class="src" href="https://www.newscientist.com/article/2095740-tesla-driver-dies-in-first-autonomous-car-crash-in-us/" target="_blank" rel="noopener">Source: New Scientist (Alice Klein) · 1 July 2016 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-military">
+      <header class="domain__head">
+        <span class="domain__idx">02</span>
+        <h3>Military</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Robots defuse bombs, not people" src="site_media/images/military_good.jpg"><figcaption class="credit"><a href="https://commons.wikimedia.org/wiki/File:F6_-_a_bomb_disposal_robot_-_151027-F-YM354-303.JPG" target="_blank" rel="noopener">James Hodgman · Public domain</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;3</span></p>
+          <h4>Robots defuse bombs, not people</h4>
+          
+          <p class="detail">An AI-augmented bomb-disposal robot reaches tight spots and defuses or detonates deadly devices without humans risking their lives.</p>
+          <a class="src" href="http://www.bbc.com/future/story/20160714-what-does-a-bomb-disposal-robot-actually-do" target="_blank" rel="noopener">Source: BBC Future · 14 July 2016 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="Robot cannon kills 9, wounds 14" src="site_media/images/military_bad.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">Ank Kumar · CC BY-SA 4.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;4</span></p>
+          <h4>Robot cannon kills 9, wounds 14</h4>
+          
+          <p class="detail">In Lohatlha, South Africa, an Oerlikon GDF-005 anti-aircraft gun directed by AI went out of control and sprayed cannon shells, killing nine and wounding 14.</p>
+          <a class="src" href="https://www.wired.com/2007/10/robot-cannon-ki/" target="_blank" rel="noopener">Source: Wired (Noah Shachtman) · 18 October 2007 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-politics">
+      <header class="domain__head">
+        <span class="domain__idx">03</span>
+        <h3>Politics</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Fairer electoral maps" src="site_media/images/politics_good.png"><figcaption class="credit"><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">JC LaPete · CC0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;5</span></p>
+          <h4>Fairer electoral maps</h4>
+          
+          <p class="detail">AI can draw congressional districts in North Carolina that are fair to both political parties and to various interest groups.</p>
+          <a class="src" href="https://sites.duke.edu/quantifyinggerrymandering/" target="_blank" rel="noopener">Source: Duke University <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="Cambridge Analytica" src="site_media/images/politics_bad.jpg"><figcaption class="credit"><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">LPS.1 · CC0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;6</span></p>
+          <h4>Cambridge Analytica</h4>
+          <span class="bignum">87 million</span>
+          <p class="detail">Cambridge Analytica used AI trained on the personal data of up to 87 million Facebook users — without their knowledge — to try to influence the 2016 US presidential election.</p>
+          <a class="src" href="https://fortune.com/2018/04/10/facebook-cambridge-analytica-what-happened/" target="_blank" rel="noopener">Source: Fortune; Hu, &#x27;Cambridge Analytica&#x27;s black box&#x27;, Big Data &amp; Society (2020) · 10 April 2018 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-law">
+      <header class="domain__head">
+        <span class="domain__idx">04</span>
+        <h3>Law</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Cheaper contract review" src="site_media/images/law_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">Blogtrepreneur · CC BY 2.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;7</span></p>
+          <h4>Cheaper contract review</h4>
+          
+          <p class="detail">ThoughtRiver built an AI that reads legal contracts, answers key questions and suggests next steps — for a far smaller fee than human lawyers charge.</p>
+          <a class="src" href="https://www.thoughtriver.com" target="_blank" rel="noopener">Source: thoughtriver.com <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="A six-year sentence from a black box" src="site_media/images/law_bad.jpg"><figcaption class="credit"><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">Michael D Beckwith · CC0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;8</span></p>
+          <h4>A six-year sentence from a black box</h4>
+          <span class="bignum">6 years</span>
+          <p class="detail">Eric Loomis was sentenced to six years partly because a proprietary AI risk assessment labelled him a &#x27;high risk to the community&#x27;. No one could see how it decided; critics argue it is biased by race and gender.</p>
+          <a class="src" href="https://en.wikipedia.org/wiki/State_v._Loomis" target="_blank" rel="noopener">Source: cert. denied, 137 S.Ct. 2290 (2017) · 2016 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-medicine">
+      <header class="domain__head">
+        <span class="domain__idx">05</span>
+        <h3>Medicine</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Watson catches a rare leukaemia" src="site_media/images/medicine_good.png"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">Clockready · CC BY-SA 3.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;9</span></p>
+          <h4>Watson catches a rare leukaemia</h4>
+          <span class="bignum">2015</span>
+          <p class="detail">In 2015 IBM&#x27;s Watson diagnosed a rare leukaemia that human doctors couldn&#x27;t pinpoint at first. Doctors said Watson&#x27;s speed was crucial for a fast-progressing disease.</p>
+          <a class="src" href="https://www.asianscientist.com/2016/08/topnews/ibm-watson-rare-leukemia-university-tokyo-artificial-intelligence/" target="_blank" rel="noopener">Source: Asian Scientist · 2016 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="An algorithm that favoured White patients" src="site_media/images/medicine_bad.jpg"><figcaption class="credit"><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">W.carter · CC0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;10</span></p>
+          <h4>An algorithm that favoured White patients</h4>
+          
+          <p class="detail">Bias in training data led a widely used &#x27;high-risk care&#x27; algorithm to prioritize White patients over Black patients who were equally ill.</p>
+          <a class="src" href="https://www.science.org/doi/10.1126/science.aax2342" target="_blank" rel="noopener">Source: Obermeyer et al., Science 366(6464) · 2019 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-investment">
+      <header class="domain__head">
+        <span class="domain__idx">06</span>
+        <h3>Investment</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Advice for the rest of us" src="site_media/images/investment_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">Francisco Gonzalez · CC BY 2.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;11</span></p>
+          <h4>Advice for the rest of us</h4>
+          
+          <p class="detail">Robo-advisers such as Betterment, Wealthfront and Wealthsimple claim to be at least as accurate as human advisers, with low minimums that open financial advice to lower-income investors.</p>
+          <a class="src" href="https://www.betterment.com" target="_blank" rel="noopener">Source: Moral AI, Introduction note 11 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="The Flash Crash" src="site_media/images/investment_bad.png"><figcaption class="credit"><a href="https://commons.wikimedia.org/wiki/File:Flashcrash-2010.png" target="_blank" rel="noopener">CNN, PM3 · Public domain</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;12</span></p>
+          <h4>The Flash Crash</h4>
+          <span class="bignum">998.5 pts</span>
+          <p class="detail">On 6 May 2010 at 2:45 pm the Dow Jones Industrial Average dropped 998.5 points in minutes as AI-driven trading systems spiralled into high-speed automated selling.</p>
+          <a class="src" href="https://en.wikipedia.org/wiki/2010_flash_crash" target="_blank" rel="noopener">Source: Wikipedia · 6 May 2010 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-marketing">
+      <header class="domain__head">
+        <span class="domain__idx">07</span>
+        <h3>Marketing</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Reaching youth who need testing" src="site_media/images/marketing_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">NIAID · CC BY 2.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;13</span></p>
+          <h4>Reaching youth who need testing</h4>
+          <span class="bignum">+25%</span>
+          <p class="detail">The &#x27;Have You Heard?&#x27; (HYH) project used AI to raise HIV testing among homeless youth by 25%, by finding the young people most influential in their social networks.</p>
+          <a class="src" href="https://www.cais.usc.edu/projects/hiv-prevention-homeless-youth/" target="_blank" rel="noopener">Source: USC Center for AI in Society (CAIS) <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="Target knew before her father did" src="site_media/images/marketing_bad.jpg"><figcaption class="credit"><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">Winnebaggo · CC0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;14</span></p>
+          <h4>Target knew before her father did</h4>
+          
+          <p class="detail">In 2012 a Target store mailed baby coupons to a 16-year-old because its AI predicted, from her buying patterns, that she was pregnant — before she had told her father.</p>
+          <a class="src" href="https://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/" target="_blank" rel="noopener">Source: Forbes (Kashmir Hill) · 16 February 2012 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-art">
+      <header class="domain__head">
+        <span class="domain__idx">08</span>
+        <h3>Art</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Music you&#x27;d never have found" src="site_media/images/art_good.png"><figcaption class="credit"><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">Vijay Verma · CC0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;15</span></p>
+          <h4>Music you&#x27;d never have found</h4>
+          
+          <p class="detail">Pandora and Spotify use AI analyses of musical taste to recommend new songs and artists listeners enjoy and might never have discovered otherwise.</p>
+          <a class="src" href="https://www.cnn.com/2020/12/24/entertainment/spotify-ai-bot-judges-your-taste-in-music-trnd/index.html" target="_blank" rel="noopener">Source: CNN · 24 December 2020 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="Art that sold for $432,500" src="site_media/images/art_bad.png"><figcaption class="credit"><a href="https://commons.wikimedia.org/wiki/File:Edmond_de_Belamy.png" target="_blank" rel="noopener">Artificial intelligence software · Public domain</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;16</span></p>
+          <h4>Art that sold for $432,500</h4>
+          <span class="bignum">$432,500</span>
+          <p class="detail">AI-made art has sold for as much as $432,500 — but the AI could do it only by training on human artists&#x27; images, used without permission, credit or pay, and hard to make it &#x27;forget&#x27;.</p>
+          <a class="src" href="https://www.christies.com/features/a-collaboration-between-two-artists-one-human-one-a-machine-9332-1.aspx" target="_blank" rel="noopener">Source: Christie&#x27;s · 2018 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-media">
+      <header class="domain__head">
+        <span class="domain__idx">09</span>
+        <h3>Media</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Quakebot warns faster" src="site_media/images/media_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">Joe Parks from Berkeley, CA · CC BY 2.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;17</span></p>
+          <h4>Quakebot warns faster</h4>
+          
+          <p class="detail">The Los Angeles Times uses an algorithm called Quakebot to warn readers about California earthquakes more quickly and accurately than traditional reporting.</p>
+          <a class="src" href="https://www.latimes.com/la-me-quakebot-faq-20190517-story.html" target="_blank" rel="noopener">Source: Los Angeles Times · 17 May 2019 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="Deepfakes hit an election" src="site_media/images/media_bad.jpg"><figcaption class="credit"><a href="https://commons.wikimedia.org/wiki/File:Male_and_female_deepfake.jpg" target="_blank" rel="noopener">Vahan03 · Public domain</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;18</span></p>
+          <h4>Deepfakes hit an election</h4>
+          
+          <p class="detail">In 2023 Turkish presidential candidate Muharrem İnce withdrew after a sex video he called a &#x27;deepfake&#x27; spread on Facebook; a fake video also tied a rival, Kemal Kılıçdaroğlu, to a terrorist group.</p>
+          <a class="src" href="https://www.wired.com/story/deepfakes-cheapfakes-and-twitter-censorship-mar-turkeys-elections/" target="_blank" rel="noopener">Source: Wired · 2023 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-surveillance">
+      <header class="domain__head">
+        <span class="domain__idx">10</span>
+        <h3>Surveillance</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Catching poachers before they strike" src="site_media/images/surveillance_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">Bumihillsfoundation · CC BY-SA 4.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;19</span></p>
+          <h4>Catching poachers before they strike</h4>
+          
+          <p class="detail">AI helps locate poachers in India and Africa — even predicting poaching before it happens — and game-theoretic AI optimizes ranger patrol routes to intercept snares.</p>
+          <a class="src" href="https://www.bbcearth.com" target="_blank" rel="noopener">Source: BBC Earth (Zoe Cormier) <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="Tracking a minority by face" src="site_media/images/surveillance_bad.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">gruntzooki · CC BY-SA 4.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;20</span></p>
+          <h4>Tracking a minority by face</h4>
+          <span class="bignum">500,000 scans/mo</span>
+          <p class="detail">China is reported to use a vast facial-recognition system to track and control the Uighurs, a largely Muslim minority — 500,000 face scans in a single month.</p>
+          <a class="src" href="https://www.nytimes.com/2019/04/14/technology/china-surveillance-artificial-intelligence-racial-profiling.html" target="_blank" rel="noopener">Source: The New York Times (Paul Mozur) · 14 April 2019 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="domain reveal" id="d-environment">
+      <header class="domain__head">
+        <span class="domain__idx">11</span>
+        <h3>Environment</h3>
+        <span class="domain__rule"></span>
+      </header>
+      <div class="split">
+        
+      <article class="panel panel--good">
+        <figure class="ph"><img loading="lazy" alt="Spray only the weeds" src="site_media/images/environment_good.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">Richard Croft · CC BY-SA 2.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--good">Good news<span class="ref">ref&nbsp;22</span></p>
+          <h4>Spray only the weeds</h4>
+          
+          <p class="detail">Blue River Technology uses AI camera vision to tell crops from weeds and deliver herbicide only to the weeds — helping avoid resistance and saving cotton growers money.</p>
+          <a class="src" href="https://www.techrepublic.com/article/how-self-driving-tractors-ai-and-precision-agriculture-will-save-us-from-the-impending-food-crisis/" target="_blank" rel="noopener">Source: TechRepublic (Natalie Gagliardi) · December 2018 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+        
+      <article class="panel panel--bad">
+        <figure class="ph"><img loading="lazy" alt="A model&#x27;s carbon shadow" src="site_media/images/environment_bad.jpg"><figcaption class="credit"><a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">BalticServers.com · CC BY-SA 3.0</a></figcaption></figure>
+        <div class="panel__body">
+          <p class="kicker kicker--bad">Bad news<span class="ref">ref&nbsp;23</span></p>
+          <h4>A model&#x27;s carbon shadow</h4>
+          <span class="bignum">≈5 cars</span>
+          <p class="detail">Training many high-performing AI models takes enormous compute. One estimate: training a single AI model can emit as much carbon as five cars do across their entire lifetimes.</p>
+          <a class="src" href="https://www.technologyreview.com/2019/06/06/239031/training-a-single-ai-model-can-emit-as-much-carbon-as-five-cars-in-their-lifetimes/" target="_blank" rel="noopener">Source: MIT Technology Review (Karen Hao) · 6 June 2019 <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+</div></section>
+<section class="section" id="numbers"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">Figures reported in the book</span><h2>By the numbers</h2></div>
+  <p class="lead">The Introduction&#x27;s hard figures, each in its own context. Different units — shown for scale, never as a ranking.</p>
+  <div class="numgrid">
+        <div class="numcard numcard--bad reveal">
+          <div class="numcard__val">87 million</div>
+          <div class="numcard__lab">Facebook users&#x27; data</div>
+          <p class="numcard__ctx">used by Cambridge Analytica without consent to try to sway the 2016 US election</p>
+          <span class="ref ref--corner">ref&nbsp;6</span>
+        </div>
+
+        <div class="numcard numcard--bad reveal">
+          <div class="numcard__val">998.5</div>
+          <div class="numcard__lab">Dow drop in minutes</div>
+          <p class="numcard__ctx">the 6 May 2010 &#x27;Flash Crash&#x27; driven by AI high-speed selling</p>
+          <span class="ref ref--corner">ref&nbsp;12</span>
+        </div>
+
+        <div class="numcard numcard--bad reveal">
+          <div class="numcard__val">$432,500</div>
+          <div class="numcard__lab">price of an AI artwork</div>
+          <p class="numcard__ctx">sold at auction; the model trained on artists&#x27; work without consent</p>
+          <span class="ref ref--corner">ref&nbsp;16</span>
+        </div>
+
+        <div class="numcard numcard--good reveal">
+          <div class="numcard__val">+25%</div>
+          <div class="numcard__lab">more youth tested for HIV</div>
+          <p class="numcard__ctx">the &#x27;Have You Heard?&#x27; project found socially influential young people</p>
+          <span class="ref ref--corner">ref&nbsp;13</span>
+        </div>
+
+        <div class="numcard numcard--bad reveal">
+          <div class="numcard__val">9 / 14</div>
+          <div class="numcard__lab">killed / wounded</div>
+          <p class="numcard__ctx">an AI-directed Oerlikon GDF-005 anti-aircraft gun, Lohatlha, South Africa</p>
+          <span class="ref ref--corner">ref&nbsp;4</span>
+        </div>
+
+        <div class="numcard numcard--bad reveal">
+          <div class="numcard__val">6 years</div>
+          <div class="numcard__lab">prison, partly from a black box</div>
+          <p class="numcard__ctx">Eric Loomis, scored &#x27;high risk&#x27; by a proprietary algorithm</p>
+          <span class="ref ref--corner">ref&nbsp;8</span>
+        </div>
+
+        <div class="numcard numcard--bad reveal">
+          <div class="numcard__val">≈5 cars</div>
+          <div class="numcard__lab">lifetime carbon, in one model</div>
+          <p class="numcard__ctx">an estimate of the emissions of training a single large AI model</p>
+          <span class="ref ref--corner">ref&nbsp;23</span>
+        </div></div><p class="numnote">// different units — shown for scale, not a ranking</p><figure class="vid reveal"><video playsinline preload="metadata" controls autoplay loop muted src="site_media/en/ByTheNumbers.mp4"></video><figcaption>The Introduction&#x27;s hard figures, each in its own context. Different units — shown for scale, never as a ranking.</figcaption></figure>
+</div></section>
+<section class="section" id="values"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">What the rest of the book explores</span><h2>Six moral values at stake</h2></div>
+  <p class="lead">Six moral values the rest of the book is built around — and the authors&#x27; reminder that the list isn&#x27;t exhaustive.</p>
+  <div class="valgrid">
+        <div class="valcard reveal" style="--accent:#5ac8a8">
+          <span class="valcard__bar"></span>
+          <h4>Safety</h4>
+          <p>autonomous cars and weapons, deepfakes, social media, robot surgeons, and future AI that could make us lose control.</p>
+        </div>
+
+        <div class="valcard reveal" style="--accent:#7aa2f7">
+          <span class="valcard__bar"></span>
+          <h4>Equality</h4>
+          <p>risk scores keyed to race, wealth and gender; bias in healthcare; robo-advisers; inequality from AI job losses.</p>
+        </div>
+
+        <div class="valcard reveal" style="--accent:#e7b86b">
+          <span class="valcard__bar"></span>
+          <h4>Privacy</h4>
+          <p>Cambridge Analytica; Target&#x27;s pregnancy-prediction coupons; Chinese surveillance of the Uighurs.</p>
+        </div>
+
+        <div class="valcard reveal" style="--accent:#9ece6a">
+          <span class="valcard__bar"></span>
+          <h4>Freedom</h4>
+          <p>aiding blind people like Steve Mahan; impeding movement or religious practice through targeted surveillance.</p>
+        </div>
+
+        <div class="valcard reveal" style="--accent:#bb9af7">
+          <span class="valcard__bar"></span>
+          <h4>Transparency</h4>
+          <p>Eric Loomis; AI that grades job performance, résumés, loan creditworthiness and student papers.</p>
+        </div>
+
+        <div class="valcard reveal" style="--accent:#e0736b">
+          <span class="valcard__bar"></span>
+          <h4>Deception</h4>
+          <p>deepfakes and AI-generated fake news used to interfere in elections.</p>
+        </div></div><p class="caveat">The authors stress this list isn&#x27;t exhaustive — and many cases touch more than one value.</p><figure class="vid reveal"><video playsinline preload="metadata" controls autoplay loop muted src="site_media/en/SixValues.mp4"></video><figcaption>Six moral values the rest of the book is built around — and the authors&#x27; reminder that the list isn&#x27;t exhaustive.</figcaption></figure>
+</div></section>
+<section class="section" id="thesis"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">The book’s argument</span><h2>Don’t throw out the baby</h2></div>
+  <p class="lead">Don&#x27;t underestimate AI&#x27;s dangers; don&#x27;t overestimate them either. Keep the AI baby — lose the bathwater.</p>
+  <figure class="vid reveal"><video playsinline preload="metadata" controls autoplay loop muted src="site_media/en/BabyAndBathwater.mp4"></video><figcaption>Don&#x27;t underestimate AI&#x27;s dangers; don&#x27;t overestimate them either. Keep the AI baby — lose the bathwater.</figcaption></figure><p class="q" style="font-size:clamp(24px,3.6vw,40px);margin-top:2.2rem;max-width:30ch">Keep AI&#x27;s benefits without its harms — don&#x27;t throw the baby out with the bathwater — and pay AI ethics the attention it deserves.</p>
+</div></section>
+<section class="section"><div class="wrap"><div class="honesty reveal">
+  <h2>What we do <em>not</em> claim</h2>
+  <ul><li>This is an unofficial companion, not the book. We paraphrase the authors in our own words; read the book for their full argument.</li>
+<li>The eleven stories are the ones the authors chose for their Introduction — a small sample they call the tip of the iceberg, not a survey of all AI.</li>
+<li>We do not independently verify the events; we relay them as the book does and link the source the authors cite (and, in the Italian edition, an Italian-language source).</li>
+<li>The figures use different units and are not comparable on one scale — they show the scale of the stakes, not a ranking.</li>
+<li>Photographs are freely-licensed, representative images (credited below); unless noted, they do not depict the exact event. The glass and balance are schematic.</li></ul>
+</div></div></section>
+<section class="section" id="references"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">Provenance</span><h2>References</h2></div>
+  <p class="lead">The sources the authors cite in the book&#x27;s Introduction (notes 1–23). The book reports these cases; we link what it cites.</p>
+  <ol class="ref-list cols2" style="margin-top:1.6rem">
+        <li class="ref-item">
+          <span class="ref-num">1</span>
+          <span class="ref-txt"><strong>Transportation — good.</strong>
+          Steve Mahan&#x27;s first ride (Google Self-Driving Car). <em>YouTube</em>.
+          <a href="https://www.youtube.com/watch?v=x_d3MCkivg8" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">2</span>
+          <span class="ref-txt"><strong>Transportation — bad.</strong>
+          Tesla driver dies in first autonomous car crash in US. <em>New Scientist (Alice Klein)</em> (1 July 2016).
+          <a href="https://www.newscientist.com/article/2095740-tesla-driver-dies-in-first-autonomous-car-crash-in-us/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">3</span>
+          <span class="ref-txt"><strong>Military — good.</strong>
+          What does a bomb-disposal robot actually do?. <em>BBC Future</em> (14 July 2016).
+          <a href="http://www.bbc.com/future/story/20160714-what-does-a-bomb-disposal-robot-actually-do" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">4</span>
+          <span class="ref-txt"><strong>Military — bad.</strong>
+          Robot Cannon Kills 9, Wounds 14. <em>Wired (Noah Shachtman)</em> (18 October 2007).
+          <a href="https://www.wired.com/2007/10/robot-cannon-ki/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">5</span>
+          <span class="ref-txt"><strong>Politics — good.</strong>
+          Quantifying Gerrymandering. <em>Duke University</em>.
+          <a href="https://sites.duke.edu/quantifyinggerrymandering/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">6</span>
+          <span class="ref-txt"><strong>Politics — bad.</strong>
+          Facebook and Cambridge Analytica: What happened?. <em>Fortune; Hu, &#x27;Cambridge Analytica&#x27;s black box&#x27;, Big Data &amp; Society (2020)</em> (10 April 2018).
+          <a href="https://fortune.com/2018/04/10/facebook-cambridge-analytica-what-happened/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">7</span>
+          <span class="ref-txt"><strong>Law — good.</strong>
+          ThoughtRiver. <em>thoughtriver.com</em>.
+          <a href="https://www.thoughtriver.com" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">8</span>
+          <span class="ref-txt"><strong>Law — bad.</strong>
+          Loomis v. Wisconsin, 881 N.W.2d 749 (Wis. 2016). <em>cert. denied, 137 S.Ct. 2290 (2017)</em> (2016).
+          <a href="https://en.wikipedia.org/wiki/State_v._Loomis" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">9</span>
+          <span class="ref-txt"><strong>Medicine — good.</strong>
+          IBM Watson detects rare leukaemia (University of Tokyo). <em>Asian Scientist</em> (2016).
+          <a href="https://www.asianscientist.com/2016/08/topnews/ibm-watson-rare-leukemia-university-tokyo-artificial-intelligence/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">10</span>
+          <span class="ref-txt"><strong>Medicine — bad.</strong>
+          Dissecting racial bias in an algorithm used to manage the health of populations. <em>Obermeyer et al., Science 366(6464)</em> (2019).
+          <a href="https://www.science.org/doi/10.1126/science.aax2342" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">11</span>
+          <span class="ref-txt"><strong>Investment — good.</strong>
+          Robo-advisers (example credited to Coleman Kraemer). <em>Moral AI, Introduction note 11</em>.
+          <a href="https://www.betterment.com" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">12</span>
+          <span class="ref-txt"><strong>Investment — bad.</strong>
+          2010 Flash Crash. <em>Wikipedia</em> (6 May 2010).
+          <a href="https://en.wikipedia.org/wiki/2010_flash_crash" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">13</span>
+          <span class="ref-txt"><strong>Marketing — good.</strong>
+          HIV Prevention Among Homeless Youth. <em>USC Center for AI in Society (CAIS)</em>.
+          <a href="https://www.cais.usc.edu/projects/hiv-prevention-homeless-youth/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">14</span>
+          <span class="ref-txt"><strong>Marketing — bad.</strong>
+          How Target Figured Out A Teen Girl Was Pregnant Before Her Father Did. <em>Forbes (Kashmir Hill)</em> (16 February 2012).
+          <a href="https://www.forbes.com/sites/kashmirhill/2012/02/16/how-target-figured-out-a-teen-girl-was-pregnant-before-her-father-did/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">15</span>
+          <span class="ref-txt"><strong>Art — good.</strong>
+          A Spotify AI bot will judge your taste in music. <em>CNN</em> (24 December 2020).
+          <a href="https://www.cnn.com/2020/12/24/entertainment/spotify-ai-bot-judges-your-taste-in-music-trnd/index.html" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">16</span>
+          <span class="ref-txt"><strong>Art — bad.</strong>
+          Is artificial intelligence set to take over the art world? (Edmond de Belamy, Obvious collective). <em>Christie&#x27;s</em> (2018).
+          <a href="https://www.christies.com/features/a-collaboration-between-two-artists-one-human-one-a-machine-9332-1.aspx" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">17</span>
+          <span class="ref-txt"><strong>Media — good.</strong>
+          What is Quakebot? (LA Times FAQ). <em>Los Angeles Times</em> (17 May 2019).
+          <a href="https://www.latimes.com/la-me-quakebot-faq-20190517-story.html" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">18</span>
+          <span class="ref-txt"><strong>Media — bad.</strong>
+          Deepfakes, Cheapfakes and Twitter Censorship Mar Turkey&#x27;s Elections. <em>Wired</em> (2023).
+          <a href="https://www.wired.com/story/deepfakes-cheapfakes-and-twitter-censorship-mar-turkeys-elections/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">19</span>
+          <span class="ref-txt"><strong>Surveillance — good.</strong>
+          The technology fighting poachers (PAWS). <em>BBC Earth (Zoe Cormier)</em>.
+          <a href="https://www.bbcearth.com" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">20</span>
+          <span class="ref-txt"><strong>Surveillance — bad.</strong>
+          One Month, 500,000 Face Scans: How China Is Using A.I. to Profile a Minority. <em>The New York Times (Paul Mozur)</em> (14 April 2019).
+          <a href="https://www.nytimes.com/2019/04/14/technology/china-surveillance-artificial-intelligence-racial-profiling.html" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">22</span>
+          <span class="ref-txt"><strong>Environment — good.</strong>
+          How self-driving tractors, AI, and precision agriculture will save us from the food crisis. <em>TechRepublic (Natalie Gagliardi)</em> (December 2018).
+          <a href="https://www.techrepublic.com/article/how-self-driving-tractors-ai-and-precision-agriculture-will-save-us-from-the-impending-food-crisis/" target="_blank" rel="noopener">link ↗</a></span>
+        </li>
+
+        <li class="ref-item">
+          <span class="ref-num">23</span>
+          <span class="ref-txt"><strong>Environment — bad.</strong>
+          Training a single AI model can emit as much carbon as five cars in their lifetimes. <em>MIT Technology Review (Karen Hao)</em> (6 June 2019).
+          <a href="https://www.technologyreview.com/2019/06/06/239031/training-a-single-ai-model-can-emit-as-much-carbon-as-five-cars-in-their-lifetimes/" target="_blank" rel="noopener">link ↗</a></span>
+        </li></ol>
+</div></section>
+<section class="section" id="credits"><div class="wrap">
+  <div class="section__head"><span class="eyebrow">Image credits</span><h2>Representative images</h2></div>
+  <p class="lead">Freely-licensed photographs (mostly Wikimedia Commons). Unless noted, they illustrate the domain rather than the exact event.</p>
+  <ul class="credits-list cols2" style="margin-top:1.4rem"><li><b>Transportation / good:</b> <a href="https://commons.wikimedia.org/wiki/File:Waymo_self-driving_car_side_view.gk.jpg" target="_blank" rel="noopener">Grendelkhan — CC BY-SA 4.0</a></li>
+<li><b>Transportation / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:2014_Tesla_Model_S_P85_(14595148594).jpg" target="_blank" rel="noopener">Charlie from United Kingdom — CC BY 2.0</a></li>
+<li><b>Military / good:</b> <a href="https://commons.wikimedia.org/wiki/File:F6_-_a_bomb_disposal_robot_-_151027-F-YM354-303.JPG" target="_blank" rel="noopener">James Hodgman — Public domain</a></li>
+<li><b>Military / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Dubendorf_Flieger_Flab_Museum_-_35mm_Oerlikon_twin_cannon_anti-aircraft_gun_(Ank_Kumar)_01.jpg" target="_blank" rel="noopener">Ank Kumar — CC BY-SA 4.0</a></li>
+<li><b>Politics / good:</b> <a href="https://commons.wikimedia.org/wiki/File:United_States_Congressional_Districts_in_Illinois,_1963-1972.png" target="_blank" rel="noopener">JC LaPete — CC0</a></li>
+<li><b>Politics / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Facebook_Headquarters_1_Hacker_Way_Menlo_Park.jpg" target="_blank" rel="noopener">LPS.1 — CC0</a></li>
+<li><b>Law / good:</b> <a href="https://commons.wikimedia.org/wiki/File:Legal_Contract_%26_Signature_-_Warm_Tones.jpg" target="_blank" rel="noopener">Blogtrepreneur — CC BY 2.0</a></li>
+<li><b>Law / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Beverley_Guildhall_Courtroom.jpg" target="_blank" rel="noopener">Michael D Beckwith — CC0</a></li>
+<li><b>Medicine / good:</b> <a href="https://commons.wikimedia.org/wiki/File:IBM_Watson.PNG" target="_blank" rel="noopener">Clockready — CC BY-SA 3.0</a></li>
+<li><b>Medicine / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Corridor_on_the_second_level_-_N%C3%84L_hospital_1.jpg" target="_blank" rel="noopener">W.carter — CC0</a></li>
+<li><b>Investment / good:</b> <a href="https://commons.wikimedia.org/wiki/File:Tickers_(8085342806).jpg" target="_blank" rel="noopener">Francisco Gonzalez — CC BY 2.0</a></li>
+<li><b>Investment / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Flashcrash-2010.png" target="_blank" rel="noopener">CNN, PM3 — Public domain</a></li>
+<li><b>Marketing / good:</b> <a href="https://commons.wikimedia.org/wiki/File:HIV_Vaccine_Awareness_Ribbon_-_1.jpg" target="_blank" rel="noopener">NIAID — CC BY 2.0</a></li>
+<li><b>Marketing / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Target_store_in_Stuart,_FL.jpg" target="_blank" rel="noopener">Winnebaggo — CC0</a></li>
+<li><b>Art / good:</b> <a href="https://commons.wikimedia.org/wiki/File:Headphone-dynamic-gradient.png" target="_blank" rel="noopener">Vijay Verma — CC0</a></li>
+<li><b>Art / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Edmond_de_Belamy.png" target="_blank" rel="noopener">Artificial intelligence software — Public domain</a></li>
+<li><b>Media / good:</b> <a href="https://commons.wikimedia.org/wiki/File:T%C5%8Dhoku_Seismogram_-_Flickr_-_Joe_Parks.jpg" target="_blank" rel="noopener">Joe Parks from Berkeley, CA — CC BY 2.0</a></li>
+<li><b>Media / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Male_and_female_deepfake.jpg" target="_blank" rel="noopener">Vahan03 — Public domain</a></li>
+<li><b>Surveillance / good:</b> <a href="https://commons.wikimedia.org/wiki/File:Bumi_Hills_Anti-Poaching_Unit_Protecting_Elephants_in_Zimbabwe.jpg" target="_blank" rel="noopener">Bumihillsfoundation — CC BY-SA 4.0</a></li>
+<li><b>Surveillance / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:Van_and_camera_(detailed)_Police_Facial_Recognition_checkpoint,_Charing_Cross_Station,_the_Strand,_Westminster,_2026-04-27.jpg" target="_blank" rel="noopener">gruntzooki — CC BY-SA 4.0</a></li>
+<li><b>Environment / good:</b> <a href="https://commons.wikimedia.org/wiki/File:Crop_spraying_-_geograph.org.uk_-_1253436.jpg" target="_blank" rel="noopener">Richard Croft — CC BY-SA 2.0</a></li>
+<li><b>Environment / bad:</b> <a href="https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg" target="_blank" rel="noopener">BalticServers.com — CC BY-SA 3.0</a></li></ul>
+</div></section>
+<footer class="foot"><div class="wrap">
+  <p class="big">Moral AI <span style="color:var(--mute);font-size:.7em">— and How We Get There</span></p>
+  <p>An unofficial visual companion to the Introduction (“What&#x27;s the Problem?”) of the book by Jana Schaich Borg · Walter Sinnott-Armstrong · Vincent Conitzer · Pelican Books (Penguin Random House), 2024 · ISBN 978-0-241-45474-9.
+     <a href="https://books.google.com/books?vid=ISBN9780241454749" target="_blank" rel="noopener">Read the book ↗</a></p>
+  <p>Figures, names and dates are transcribed from the book; the prose is our own paraphrase. Animations hand-authored in Manim CE. <a href="https://github.com/HarleyCoops/Math-To-Manim" target="_blank" rel="noopener">Math-To-Manim</a>.</p>
+  <p style="margin-top:1.2em;color:#6b7488">Staging build · unofficial · not affiliated with, nor endorsed by, the authors or Pelican Books.</p>
+</div></footer><script>
+(function(){
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try{
+    if(!rm && 'IntersectionObserver' in window){
+      document.body.classList.add('anim');
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting) e.target.classList.add('in');});},
+        {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+      document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    }
+  }catch(e){ document.body.classList.remove('anim'); }
+  try{
+    if('IntersectionObserver' in window){
+      var vo=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+        if(e.isIntersecting){ v.play && v.play().catch(function(){}); } else { v.pause && v.pause(); }});},
+        {threshold:.35});
+      document.querySelectorAll('video').forEach(function(v){vo.observe(v);});
+    }
+  }catch(e){}
+})();
+</script></body></html>
