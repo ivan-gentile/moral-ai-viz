@@ -13,16 +13,31 @@ This repo is the **reusable template**: the first companion visualizes the
 
 ```
 scenes/
-  intro_data.py      # SINGLE SOURCE OF TRUTH — every number/quote/source, verbatim from the book
+  intro_data.py      # SINGLE SOURCE OF TRUTH (EN) — numbers, paraphrases, sources, UI strings
+  intro_data_it.py   # Italian mirror (same keys) — full IT translation
+  content.py         # language selector: MORALAI_LANG=en|it picks the data module
   style.py           # shared house style (palette, safe-area, text helpers)
-  scene_0*.py        # one Manim Scene subclass each
+  scene_0*.py        # one Manim Scene subclass each (language-agnostic; read content.D)
 tools/
   commons_fetch.py   # pull freely-licensed images (Wikimedia Commons) with attribution
 build_manim_env.sh   # one-shot, sudo-free Manim CE 0.20.1 environment (micromamba)
-build_site.py        # generate the self-contained index.html from intro_data + credits
-site_media/          # final mp4s + images/ (+ per-image credit json) used by the page
-index.html           # the generated page (committed; served from gh-pages)
+build_site.py        # generate index.html (EN) + it/index.html (IT) from the data modules
+site_media/
+  en/ it/            # final mp4s per language          images/  shared, credited photos
+  it_sources/        # per-case Italian-language source overlays (built by a workflow)
+index.html  it/index.html   # generated pages (committed; served from gh-pages)
 ```
+
+**Bilingual.** Scenes render in either language via an env var and a separate media dir:
+```bash
+MORALAI_LANG=en  ~/manim-env/bin/manim -qm --media_dir media_en scenes/scene_01_framing.py Framing
+MORALAI_LANG=it  ~/manim-env/bin/manim -qm --media_dir media_it scenes/scene_01_framing.py Framing
+```
+`build_site.py` emits both pages; a language toggle links `/` (EN) ⇄ `/it/` (IT). The Italian
+page cites an Italian-language article per case where one was found, falling back to the source
+the authors cite. **Citation discipline:** the site is an *unofficial companion*; prose is our
+paraphrase (no long verbatim quotes), and the stories are explicitly the ones the authors chose
+for the book's Introduction.
 
 ## 1. Environment (no sudo required)
 
